@@ -1,0 +1,15 @@
+server:
+  port: 8025
+
+spring:
+  application.name: file-server
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 15MB
+
+filserserver:
+  config:
+    zip: true
+
+
