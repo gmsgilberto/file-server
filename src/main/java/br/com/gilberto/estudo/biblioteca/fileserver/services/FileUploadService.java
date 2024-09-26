@@ -3,6 +3,7 @@ package br.com.gilberto.estudo.biblioteca.fileserver.services;
 import org.springframework.stereotype.Service;
 
 import br.com.gilberto.estudo.biblioteca.fileserver.exceptions.FileStorageException;
+import br.com.gilberto.estudo.biblioteca.fileserver.file.local.tools.FileTools;
 import br.com.gilberto.estudo.biblioteca.fileserver.model.FileMetadata;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +31,7 @@ public class FileUploadService {
 						.build()
 					);	
 
-			this.fileStorageService.store(metadata.getDocumentId(), content);
+			this.fileStorageService.store(metadata.getDocumentId(), FileTools.zip(fileName, content));
 			metadata.setSucess(true);
 			
 			log.info(" --> Arquivo {} salvo com sucesso.");

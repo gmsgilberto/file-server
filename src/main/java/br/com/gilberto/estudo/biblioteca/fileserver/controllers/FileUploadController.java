@@ -23,8 +23,8 @@ public class FileUploadController {
 	private FileUploadService fileUploadService;
 	
 	@PostMapping
-	public ResponseEntity<FileMetadataResponse> upload(@RequestParam("file") MultipartFile file) throws IOException{
-		var fileMetadata = this.fileUploadService.execute(file.getName(), "gms", file.getBytes());
+	public ResponseEntity<FileMetadataResponse> upload(@RequestParam MultipartFile file) throws IOException{
+		var fileMetadata = this.fileUploadService.execute(file.getOriginalFilename(), "gms", file.getBytes());
 		return ResponseEntity
 					.status(201)
 					.body(new FileMetadataResponse(fileMetadata));

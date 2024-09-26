@@ -1,9 +1,13 @@
 package br.com.gilberto.estudo.biblioteca.fileserver.file.local.tools;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 import com.google.gson.Gson;
 
@@ -48,5 +52,19 @@ public class FileTools {
 			throw new RuntimeException("Falha ao tentar ler o arquivo " + fileName,e);
 		}
 	}
+	
+	
+    public static byte[] zip(String filename, byte[] content) throws IOException {
+        ByteArrayOutputStream fos = new ByteArrayOutputStream();
+        ZipOutputStream zipOut = new ZipOutputStream(fos);
+        ZipEntry zipEntry = new ZipEntry(filename);
+        zipOut.putNextEntry(zipEntry);
+        zipOut.write(content, 0, content.length);
+        zipOut.close();
+        fos.close();
+        return fos.toByteArray();
+    }	
+	
+	
 	
 }
