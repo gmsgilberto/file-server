@@ -1,4 +1,4 @@
-package br.com.gilberto.estudo.biblioteca.fileserver.controllers;
+package br.com.gilberto.estudo.biblioteca.fileserver.download.controler;
 
 import java.io.IOException;
 
@@ -13,31 +13,27 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.gilberto.estudo.biblioteca.fileserver.model.Metadata;
-import br.com.gilberto.estudo.biblioteca.fileserver.services.DownloadService;
-import br.com.gilberto.estudo.biblioteca.fileserver.services.model.CustomInputStream;
+import br.com.gilberto.estudo.biblioteca.fileserver.download.usecase.DownloadUsecase;
+import br.com.gilberto.estudo.biblioteca.fileserver.store.model.Metadata;
 import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping(path = "v1/download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE )
 @AllArgsConstructor
-public class DownloadController {
+public class DownloadResource {
 
-	private DownloadService service;
+	private DownloadUsecase usecase;
 	
 	@GetMapping(path = "/{document-id}")
 	public ResponseEntity<InputStreamResource> download(@PathVariable(name = "document-id", required = true) String documentId) throws IOException{
-		var resource = this.service.execute(documentId);
+		var resource = this.usecase.execute(documentId);
 		return resource == null ? 
 				ResponseEntity.notFound().build() : 
-				buildResponse(resource);
-	}
-
-	private ResponseEntity<InputStreamResource> buildResponse(CustomInputStream resource) {
-		return new ResponseEntity<InputStreamResource>(
-				new InputStreamResource(resource.getInputStream()),
-				headers(resource.getFileMetadata()), 
-				HttpStatus.OK);
+					new ResponseEntity<InputStreamResource>(
+						new InputStreamResource(resource.getInputStream()),
+						headers(resource.getFileMetadata()), 
+						HttpStatus.OK
+						);
 	}
 
 	private MultiValueMap<String, String> headers(Metadata metadata) {

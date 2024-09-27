@@ -1,15 +1,15 @@
-package br.com.gilberto.estudo.biblioteca.fileserver.usecases;
+package br.com.gilberto.estudo.biblioteca.fileserver.upload.usecase;
 
 import java.util.Date;
 
 import org.springframework.stereotype.Service;
 
-import br.com.gilberto.estudo.biblioteca.fileserver.exceptions.FileStorageException;
-import br.com.gilberto.estudo.biblioteca.fileserver.file.local.tools.FileTools;
-import br.com.gilberto.estudo.biblioteca.fileserver.model.Metadata;
+import br.com.gilberto.estudo.biblioteca.fileserver.exceptions.FileServerException;
 import br.com.gilberto.estudo.biblioteca.fileserver.queue.service.QueueService;
-import br.com.gilberto.estudo.biblioteca.fileserver.services.MetadataService;
-import br.com.gilberto.estudo.biblioteca.fileserver.services.StorageService;
+import br.com.gilberto.estudo.biblioteca.fileserver.store.model.Metadata;
+import br.com.gilberto.estudo.biblioteca.fileserver.store.service.MetadataService;
+import br.com.gilberto.estudo.biblioteca.fileserver.store.service.StorageService;
+import br.com.gilberto.estudo.biblioteca.fileserver.tools.FileTools;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -56,7 +56,7 @@ public class UploadUseCase {
 			return metadata;
 			
 		}catch (Exception e) {
-			throw new FileStorageException("Nao foi possivel gravar o arquivo " + fileName, e);
+			throw new FileServerException("Nao foi possivel gravar o arquivo " + fileName, e);
 		}
 		
 	}

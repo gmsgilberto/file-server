@@ -1,4 +1,4 @@
-package br.com.gilberto.estudo.biblioteca.fileserver.services;
+package br.com.gilberto.estudo.biblioteca.fileserver.store.service;
 
 import java.io.FileNotFoundException;
 import java.util.Date;
@@ -6,8 +6,8 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import br.com.gilberto.estudo.biblioteca.fileserver.model.Metadata;
-import br.com.gilberto.estudo.biblioteca.fileserver.repository.FileMetadataRepository;
+import br.com.gilberto.estudo.biblioteca.fileserver.store.model.Metadata;
+import br.com.gilberto.estudo.biblioteca.fileserver.store.repository.MetadataRepository;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -15,7 +15,7 @@ import lombok.AllArgsConstructor;
 public class MetadataService {
 	
 	
-	private FileMetadataRepository repository;
+	private MetadataRepository repository;
 	
 	/**
 	 * Gera um registro de 

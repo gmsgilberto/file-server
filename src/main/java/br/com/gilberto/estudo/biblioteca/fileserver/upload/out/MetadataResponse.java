@@ -1,9 +1,9 @@
-package br.com.gilberto.estudo.biblioteca.fileserver.controllers.response;
+package br.com.gilberto.estudo.biblioteca.fileserver.upload.out;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
-import br.com.gilberto.estudo.biblioteca.fileserver.model.Metadata;
+import br.com.gilberto.estudo.biblioteca.fileserver.store.model.Metadata;
 import lombok.Getter;
 
 @Getter

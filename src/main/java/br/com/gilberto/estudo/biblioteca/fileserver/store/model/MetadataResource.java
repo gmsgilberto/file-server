@@ -1,14 +1,13 @@
-package br.com.gilberto.estudo.biblioteca.fileserver.services.model;
+package br.com.gilberto.estudo.biblioteca.fileserver.store.model;
 
 import java.io.InputStream;
 
-import br.com.gilberto.estudo.biblioteca.fileserver.model.Metadata;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class CustomInputStream {
+public class MetadataResource {
 
 	private final InputStream inputStream;
 	private final Metadata fileMetadata;

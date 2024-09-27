@@ -1,8 +1,7 @@
-package br.com.gilberto.estudo.biblioteca.fileserver.file.local.tools;
+package br.com.gilberto.estudo.biblioteca.fileserver.tools;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
@@ -11,7 +10,7 @@ import java.util.zip.ZipOutputStream;
 
 import com.google.gson.Gson;
 
-import br.com.gilberto.estudo.biblioteca.fileserver.exceptions.FileStorageException;
+import br.com.gilberto.estudo.biblioteca.fileserver.exceptions.FileServerException;
 
 public class FileTools {
 
@@ -34,26 +33,11 @@ public class FileTools {
 			out.write(content);
 			out.flush();
 		}catch (Exception e) {
-			throw new FileStorageException("Nao foi possivel gravar o arquivo  "+ fileName, e);
+			throw new FileServerException("Nao foi possivel gravar o arquivo  "+ fileName, e);
 		}
 	}
 
 
-	public static String loadTxt(File directory, String fileName) {
-
-		var source = new File(directory, fileName);
-		if(!source.exists()) {
-			return null;	
-		}
-		
-		try (var input = new FileInputStream(source)){
-			return new String(input.readAllBytes());
-		}catch (Exception e) {
-			throw new RuntimeException("Falha ao tentar ler o arquivo " + fileName,e);
-		}
-	}
-	
-	
     public static byte[] zip(String filename, byte[] content) throws IOException {
         ByteArrayOutputStream fos = new ByteArrayOutputStream();
         ZipOutputStream zipOut = new ZipOutputStream(fos);

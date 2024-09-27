@@ -3,7 +3,7 @@ package br.com.gilberto.estudo.biblioteca.fileserver.queue.service;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import br.com.gilberto.estudo.biblioteca.fileserver.config.ApplicationConfig;
+import br.com.gilberto.estudo.biblioteca.fileserver.configuration.ApplicationConfig;
 import br.com.gilberto.estudo.biblioteca.fileserver.queue.service.local.NoQueueService;
 import lombok.AllArgsConstructor;
 

@@ -1,7 +1,7 @@
 package br.com.gilberto.estudo.biblioteca.fileserver.queue.service.local;
 
-import br.com.gilberto.estudo.biblioteca.fileserver.model.Metadata;
 import br.com.gilberto.estudo.biblioteca.fileserver.queue.service.QueueService;
+import br.com.gilberto.estudo.biblioteca.fileserver.store.model.Metadata;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

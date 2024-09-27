@@ -1,4 +1,4 @@
-package br.com.gilberto.estudo.biblioteca.fileserver.config;
+package br.com.gilberto.estudo.biblioteca.fileserver.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -13,7 +13,7 @@ import lombok.Setter;
 public class ApplicationConfig {
 
 	private boolean zip;
-	private String localStorage;
+	private String storage;
 	private String queueService;
 
 }

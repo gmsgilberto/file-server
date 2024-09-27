@@ -1,14 +1,14 @@
 package br.com.gilberto.estudo.biblioteca.fileserver.exceptions;
 
-public class FileStorageException extends BaseException {
+public class FileServerException extends BaseException {
 
 	private static final long serialVersionUID = 1L;
 	
-	public FileStorageException(String message, Throwable e) {
+	public FileServerException(String message, Throwable e) {
 		super(message,e);
 	}
 	
-	public FileStorageException(String message) {
+	public FileServerException(String message) {
 		super(message);
 	}
 

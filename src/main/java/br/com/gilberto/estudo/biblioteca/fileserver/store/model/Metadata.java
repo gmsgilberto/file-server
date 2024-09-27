@@ -1,4 +1,4 @@
-package br.com.gilberto.estudo.biblioteca.fileserver.model;
+package br.com.gilberto.estudo.biblioteca.fileserver.store.model;
 
 import java.io.Serializable;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package br.com.gilberto.estudo.biblioteca.fileserver.controllers;
+package br.com.gilberto.estudo.biblioteca.fileserver.upload.controler;
 
 import java.io.IOException;
 
@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.gilberto.estudo.biblioteca.fileserver.config.ApplicationConfig;
-import br.com.gilberto.estudo.biblioteca.fileserver.controllers.response.MetadataResponse;
-import br.com.gilberto.estudo.biblioteca.fileserver.usecases.UploadUseCase;
+import br.com.gilberto.estudo.biblioteca.fileserver.configuration.ApplicationConfig;
+import br.com.gilberto.estudo.biblioteca.fileserver.upload.out.MetadataResponse;
+import br.com.gilberto.estudo.biblioteca.fileserver.upload.usecase.UploadUseCase;
 import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping(path = "v1/upload", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.MULTIPART_FORM_DATA_VALUE  )
 @AllArgsConstructor
-public class UploadController {
+public class UploadResource {
 
 	private UploadUseCase fileUploadService;
 	private ApplicationConfig configuration;
