@@ -11,8 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DownloadService {
 
-	private final FileStorageService fileStorageService;
-	private final FileMetadataService metadataService;
+	private final StorageService fileStorageService;
+	private final MetadataService metadataService;
 	
 	public CustomInputStream execute(final String documentId) {
 		

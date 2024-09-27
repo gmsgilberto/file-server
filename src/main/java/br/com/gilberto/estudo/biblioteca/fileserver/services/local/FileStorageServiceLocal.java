@@ -6,11 +6,11 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 
 import br.com.gilberto.estudo.biblioteca.fileserver.exceptions.FileStorageException;
-import br.com.gilberto.estudo.biblioteca.fileserver.services.FileStorageService;
+import br.com.gilberto.estudo.biblioteca.fileserver.services.StorageService;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class FileStorageServiceLocal implements FileStorageService {
+public class FileStorageServiceLocal implements StorageService {
 	
 	private final File directory;
 

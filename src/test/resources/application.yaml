@@ -13,7 +13,6 @@ filserserver:
   config:
     zip: false
     localStorage: local
-    queueService: NoQueueService
 
 
 

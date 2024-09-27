@@ -10,8 +10,10 @@ import lombok.Setter;
 @Setter
 @Component
 @ConfigurationProperties(prefix = "filserserver.config")
-public class FileServerProperties {
+public class ApplicationConfig {
 
 	private boolean zip;
+	private String localStorage;
+	private String queueService;
 
 }

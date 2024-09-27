@@ -6,13 +6,13 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import br.com.gilberto.estudo.biblioteca.fileserver.model.FileMetadata;
+import br.com.gilberto.estudo.biblioteca.fileserver.model.Metadata;
 import br.com.gilberto.estudo.biblioteca.fileserver.repository.FileMetadataRepository;
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class FileMetadataService {
+public class MetadataService {
 	
 	
 	private FileMetadataRepository repository;
@@ -24,16 +24,16 @@ public class FileMetadataService {
 	 * @param length
 	 * @return
 	 */
-	public FileMetadata create(FileMetadata fileMetadata){
+	public Metadata create(Metadata fileMetadata){
 		
 		return this.repository.create( 
-						FileMetadata
+						Metadata
 							.builder()
 								.documentId(generateDocumentId())
 								.creationTime(new Date())
 								.fileName(fileMetadata.getFileName())
 								.originalFileName(fileMetadata.getOriginalFileName())
-								.userid(fileMetadata.getUserid())
+								.processid(fileMetadata.getProcessid())
 								.sucess(fileMetadata.isSucess())
 								.size(fileMetadata.getSize())
 							.build()
@@ -56,12 +56,12 @@ public class FileMetadataService {
 	}
 
 	
-	public FileMetadata findById(String documentid) {
+	public Metadata findById(String documentid) {
 		return this.repository.findById(documentid);
 	}
 
 	
-	public FileMetadata update(FileMetadata metadata) throws FileNotFoundException {
+	public Metadata update(Metadata metadata) throws FileNotFoundException {
 		var entity = this.repository.findById(metadata.getDocumentId());
 		if(entity == null) {
 			throw new FileNotFoundException("Nenhum arquivo encontrado com o id " + metadata.getDocumentId());

@@ -10,14 +10,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class FileMetadata implements Serializable {
+public class Metadata implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private String documentId;
 	private String fileName;
 	private String originalFileName;
-	private String userid;
+	private String processid;
 	private int size;
 	private Date creationTime;
 	private boolean sucess;

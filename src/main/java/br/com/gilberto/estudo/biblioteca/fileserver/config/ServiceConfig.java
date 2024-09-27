@@ -7,15 +7,19 @@ import org.springframework.context.annotation.Configuration;
 
 import br.com.gilberto.estudo.biblioteca.fileserver.repository.FileMetadataRepository;
 import br.com.gilberto.estudo.biblioteca.fileserver.repository.local.FileMetadataRepositoryLocal;
-import br.com.gilberto.estudo.biblioteca.fileserver.services.FileStorageService;
+import br.com.gilberto.estudo.biblioteca.fileserver.services.StorageService;
 import br.com.gilberto.estudo.biblioteca.fileserver.services.local.FileStorageServiceLocal;
+import lombok.AllArgsConstructor;
 
 @Configuration
-public class FileStorageServiceConfig {
+@AllArgsConstructor
+public class ServiceConfig {
+	
+	private ApplicationConfig configuration;
 	
 	@Bean
 	FileMetadataRepository fileMetadataRepository() {
-		var metadataDirectory = new File("target/storage/metadata/");
+		var metadataDirectory = new File(configuration.getLocalStorage(),"metadata");
 		if(!metadataDirectory.exists()) {
 			metadataDirectory.mkdirs();
 		}
@@ -23,8 +27,8 @@ public class FileStorageServiceConfig {
 	}
 	
 	@Bean
-	FileStorageService fileStorageService() {
-		var storage = new File("target/storage/dest/");
+	StorageService fileStorageService() {
+		var storage = new File(configuration.getLocalStorage(),"volume");
 		if(!storage.exists()) {
 			storage.mkdirs();
 		}

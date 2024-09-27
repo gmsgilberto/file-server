@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.gilberto.estudo.biblioteca.fileserver.model.FileMetadata;
+import br.com.gilberto.estudo.biblioteca.fileserver.model.Metadata;
 import br.com.gilberto.estudo.biblioteca.fileserver.services.DownloadService;
 import br.com.gilberto.estudo.biblioteca.fileserver.services.model.CustomInputStream;
 import lombok.AllArgsConstructor;
@@ -40,7 +40,7 @@ public class DownloadController {
 				HttpStatus.OK);
 	}
 
-	private MultiValueMap<String, String> headers(FileMetadata metadata) {
+	private MultiValueMap<String, String> headers(Metadata metadata) {
 		var headers = new LinkedMultiValueMap<String, String>();
 		headers.set("Content-disposition", "inline; filename="+ metadata.getFileName());
 		return headers;

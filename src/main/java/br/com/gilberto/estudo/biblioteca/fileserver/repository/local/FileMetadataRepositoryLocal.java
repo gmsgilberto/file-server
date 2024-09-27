@@ -5,7 +5,7 @@ import java.io.File;
 import com.google.gson.Gson;
 
 import br.com.gilberto.estudo.biblioteca.fileserver.file.local.tools.FileTools;
-import br.com.gilberto.estudo.biblioteca.fileserver.model.FileMetadata;
+import br.com.gilberto.estudo.biblioteca.fileserver.model.Metadata;
 import br.com.gilberto.estudo.biblioteca.fileserver.repository.FileMetadataRepository;
 import lombok.AllArgsConstructor;
 
@@ -15,24 +15,24 @@ public class FileMetadataRepositoryLocal implements FileMetadataRepository {
 	private final File directory;
 	
 	@Override
-	public FileMetadata create(FileMetadata fileMetadata) {
+	public Metadata create(Metadata fileMetadata) {
 		FileTools.store(fileMetadata, directory, fileMetadata.getDocumentId());
 		return fileMetadata;
 	}
 
 	@Override
-	public FileMetadata update(FileMetadata fileMetadata) {
+	public Metadata update(Metadata fileMetadata) {
 		FileTools.store(fileMetadata, directory, fileMetadata.getDocumentId());
 		return fileMetadata;
 	}
 
 	@Override
-	public FileMetadata findById(String documentid) {
+	public Metadata findById(String documentid) {
 		var json = FileTools.loadTxt(directory,documentid);
 		if(json == null) {
 			return null;
 		}
-		return new Gson().fromJson(json, FileMetadata.class);
+		return new Gson().fromJson(json, Metadata.class);
 	}
 
 }

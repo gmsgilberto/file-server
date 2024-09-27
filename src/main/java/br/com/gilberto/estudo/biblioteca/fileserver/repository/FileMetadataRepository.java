@@ -1,6 +1,6 @@
 package br.com.gilberto.estudo.biblioteca.fileserver.repository;
 
-import br.com.gilberto.estudo.biblioteca.fileserver.model.FileMetadata;
+import br.com.gilberto.estudo.biblioteca.fileserver.model.Metadata;
 
 public interface FileMetadataRepository {
 	
@@ -11,7 +11,7 @@ public interface FileMetadataRepository {
 	 * @param length
 	 * @return
 	 */
-	FileMetadata create(FileMetadata fileMetadata);
+	Metadata create(Metadata fileMetadata);
 
 	
 	/**
@@ -19,9 +19,9 @@ public interface FileMetadataRepository {
 	 * @param metadata
 	 * @return
 	 */
-	FileMetadata update(FileMetadata metadata);
+	Metadata update(Metadata metadata);
 
 
-	FileMetadata findById(String documentid);
+	Metadata findById(String documentid);
 	
 }
