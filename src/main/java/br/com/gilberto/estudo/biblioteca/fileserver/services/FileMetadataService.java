@@ -26,24 +26,33 @@ public class FileMetadataService {
 	 */
 	public FileMetadata create(FileMetadata fileMetadata){
 		
-		//Gera o ID do documento
+		return this.repository.create( 
+						FileMetadata
+							.builder()
+								.documentId(generateDocumentId())
+								.creationTime(new Date())
+								.fileName(fileMetadata.getFileName())
+								.originalFileName(fileMetadata.getOriginalFileName())
+								.userid(fileMetadata.getUserid())
+								.sucess(fileMetadata.isSucess())
+								.size(fileMetadata.getSize())
+							.build()
+						);
+		
+	}
+
+
+	
+	/**
+	 * Gera um ID único do documento
+	 * @return
+	 */
+	private String generateDocumentId() {
 		var documentid = generateId();
 		while(findById(documentid) != null) {
 			documentid = generateId();
 		}
-		
-		return this.repository.create( 
-						FileMetadata
-							.builder()
-								.creationTime(new Date())
-								.documentId(documentid)
-								.fileName(fileMetadata.getFileName())
-								.userid(fileMetadata.getUserid())
-								.sucess(false)
-								.length(fileMetadata.getLength())
-							.build()
-						);
-		
+		return documentid;
 	}
 
 	

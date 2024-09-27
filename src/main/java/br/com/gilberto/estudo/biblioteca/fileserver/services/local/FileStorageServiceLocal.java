@@ -1,7 +1,9 @@
 package br.com.gilberto.estudo.biblioteca.fileserver.services.local;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 
 import br.com.gilberto.estudo.biblioteca.fileserver.exceptions.FileStorageException;
 import br.com.gilberto.estudo.biblioteca.fileserver.services.FileStorageService;
@@ -24,4 +26,15 @@ public class FileStorageServiceLocal implements FileStorageService {
 		}
 	}
 
+	@Override
+	public InputStream findById(String fileId) {
+
+		try {
+			var dest = new File(directory, fileId);
+			return dest.exists() ? new FileInputStream(dest) : null;
+		}catch (Exception e) {
+			throw new FileStorageException("Falha ao tentar fazer o download do arquivo " + fileId, e);
+		} 
+		
+	}
 }

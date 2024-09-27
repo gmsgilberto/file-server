@@ -14,11 +14,12 @@ public class FileMetadata implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private final String documentId;
-	private final String fileName;
-	private final String userid;
-	private final int length;
-	private final Date creationTime;
+	private String documentId;
+	private String fileName;
+	private String originalFileName;
+	private String userid;
+	private int size;
+	private Date creationTime;
 	private boolean sucess;
 
 }

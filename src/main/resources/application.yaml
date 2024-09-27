@@ -11,6 +11,6 @@ spring:
 
 filserserver:
   config:
-    zip: true
+    zip: false
 
 

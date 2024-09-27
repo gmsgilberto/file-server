@@ -11,16 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.gilberto.estudo.biblioteca.fileserver.controllers.response.FileMetadataResponse;
-import br.com.gilberto.estudo.biblioteca.fileserver.services.FileUploadService;
+import br.com.gilberto.estudo.biblioteca.fileserver.services.UploadService;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping(path = "upload", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.MULTIPART_FORM_DATA_VALUE  )
+@RequestMapping(path = "v1/upload", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.MULTIPART_FORM_DATA_VALUE  )
 @AllArgsConstructor
-public class FileUploadController {
+public class UploadController {
 
-	
-	private FileUploadService fileUploadService;
+	private UploadService fileUploadService;
 	
 	@PostMapping
 	public ResponseEntity<FileMetadataResponse> upload(@RequestParam MultipartFile file) throws IOException{
