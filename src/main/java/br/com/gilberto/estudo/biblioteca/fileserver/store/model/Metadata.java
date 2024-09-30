@@ -20,6 +20,7 @@ public class Metadata implements Serializable {
 	private String processid;
 	private int size;
 	private Date creationTime;
+	private Date updateTime;
 	private boolean sucess;
 
 }

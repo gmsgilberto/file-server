@@ -16,7 +16,8 @@ public class MetadataResponse implements Serializable {
 	private final String originalfileName;
 	private final String processid;
 	private final String size;
-	private final String creationTime;
+	private final String creationDate;
+	private final String updateDate;
 	private boolean sucess;
 
 	public MetadataResponse(Metadata entity) {
@@ -25,8 +26,10 @@ public class MetadataResponse implements Serializable {
 		this.fileName = entity.getFileName();
 		this.originalfileName = entity.getOriginalFileName(); 
 		this.processid = entity.getProcessid();
-		this.size = entity.getSize() +  " bytes"; 
-		this.creationTime = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSSS").format(entity.getCreationTime());
+		this.size = entity.getSize() +  " bytes";
+		var sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSSS");
+		this.creationDate = sdf.format(entity.getCreationTime());
+		this.updateDate = sdf.format(entity.getUpdateTime());
 	}
 	
 

@@ -4,22 +4,22 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import br.com.gilberto.estudo.biblioteca.fileserver.configuration.ApplicationConfig;
-import br.com.gilberto.estudo.biblioteca.fileserver.queue.service.local.NoQueueService;
+import br.com.gilberto.estudo.biblioteca.fileserver.queue.service.local.NoTopicService;
 import lombok.AllArgsConstructor;
 
 @Configuration
 @AllArgsConstructor
-public class QueueConfig {
+public class TopicServiceConfig {
 
 	private final ApplicationConfig parameters;
 	
 	
 	@Bean
-	QueueService queueService() {
+	TopicService topicService() {
 		if("NoQueueService".equalsIgnoreCase(this.parameters.getQueueService())) {
-			return new NoQueueService();
+			return new NoTopicService();
 		}
-		throw new IllegalArgumentException("Queue service " + this.parameters.getQueueService() + " not implemented.");
+		throw new IllegalArgumentException("Topic Service " + this.parameters.getQueueService() + " not implemented.");
 		
 	}
 	

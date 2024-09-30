@@ -25,7 +25,8 @@ public class MetadataJdbcMapper implements RowMapper<Metadata> {
 					.fileName(rs.getString("FILE_NAME"))
 					.originalFileName(rs.getString("ORIGINAL_FILE_NAME"))
 					.processid(rs.getString("PROCESS_ID"))
-					.creationTime(rs.getTimestamp("CREATED_DATE"))
+					.creationTime(rs.getTimestamp("CREATE_DATE"))
+					.updateTime(rs.getTimestamp("UPDATE_DATE"))
 					.size(rs.getInt("BYTES"))
 					.sucess(rs.getString("FLAG_PERSISTED").equalsIgnoreCase("S"))
 				.build();

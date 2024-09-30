@@ -5,7 +5,7 @@ import java.util.Date;
 import org.springframework.stereotype.Service;
 
 import br.com.gilberto.estudo.biblioteca.fileserver.exceptions.FileServerException;
-import br.com.gilberto.estudo.biblioteca.fileserver.queue.service.QueueService;
+import br.com.gilberto.estudo.biblioteca.fileserver.queue.service.TopicService;
 import br.com.gilberto.estudo.biblioteca.fileserver.store.model.Metadata;
 import br.com.gilberto.estudo.biblioteca.fileserver.store.service.MetadataService;
 import br.com.gilberto.estudo.biblioteca.fileserver.store.service.StorageService;
@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UploadUseCase {
 
-	private final QueueService queueService;
+	private final TopicService queueService;
 	private final MetadataService metadataService;
 	private final StorageService fileStorageService;
 	
@@ -51,7 +51,7 @@ public class UploadUseCase {
 			metadata = this.metadataService.update(metadata);
 
 			//Envia a mensagem para a fila de processamento
-			this.queueService.notify(metadata);
+			this.queueService.publish(metadata);
 			
 			return metadata;
 			

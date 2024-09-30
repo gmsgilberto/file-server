@@ -28,11 +28,12 @@ public class MetadataRepositoryJdbc implements MetadataRepository {
 		sql.append("\n     FILE_NAME,");
 		sql.append("\n     ORIGINAL_FILE_NAME,");
 		sql.append("\n     PROCESS_ID,");
-		sql.append("\n     CREATED_DATE,");
+		sql.append("\n     CREATE_DATE,");
+		sql.append("\n     UPDATE_DATE,");
 		sql.append("\n     BYTES,");
 		sql.append("\n     FLAG_PERSISTED");
 		sql.append("\n   )");
-		sql.append("\n VALUES (?,?,?,?,?,?,?) ");
+		sql.append("\n VALUES (?,?,?,?,?,?,?,?) ");
 		
 		try( var conn = this.dataSource.getConnection();
 			 var pstmt = conn.prepareStatement(sql.toString());
@@ -44,6 +45,7 @@ public class MetadataRepositoryJdbc implements MetadataRepository {
 			pstmt.setString(++index, metadata.getOriginalFileName());
 			pstmt.setString(++index, metadata.getProcessid());
 			pstmt.setTimestamp(++index, new java.sql.Timestamp(metadata.getCreationTime().getTime()));
+			pstmt.setTimestamp(++index, new java.sql.Timestamp(System.currentTimeMillis()));
 			pstmt.setInt(++index, metadata.getSize());
 			pstmt.setString(++index, metadata.isSucess() ? "S" : "N");
 			pstmt.executeUpdate();
@@ -61,8 +63,9 @@ public class MetadataRepositoryJdbc implements MetadataRepository {
 		
 		var sql = new StringBuilder();
 		sql.append("\n UPDATE FILE_METADATA");
-		sql.append("\n     SET FLAG_PERSISTED = ? ");
-		sql.append("\n  WHERE DOCUMENT_ID     = ? ");
+		sql.append("\n     SET FLAG_PERSISTED = ?, ");
+		sql.append("\n         UPDATE_DATE = ? ");
+		sql.append("\n  WHERE DOCUMENT_ID  = ? ");
 		
 		try( var conn = this.dataSource.getConnection();
 			 var pstmt = conn.prepareStatement(sql.toString());
@@ -70,6 +73,7 @@ public class MetadataRepositoryJdbc implements MetadataRepository {
 			
 			var index = 0;
 			pstmt.setString(++index, metadata.isSucess() ? "S" : "N");
+			pstmt.setTimestamp(++index, new java.sql.Timestamp(System.currentTimeMillis()));
 			pstmt.setString(++index, metadata.getDocumentId());
 			pstmt.executeUpdate();
 		
